@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex,nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ceník | Paula Docce Admin </title>
+
+    <link rel="stylesheet" href="css/admin.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <header class="admin-header">
+
+        <h1>Správa ceníku</h1>
+
+        <div class="header-buttons">
+
+            <a href="dashboard.html" class="btn-secondary">
+                ← Dashboard
+            </a>
+
+            <a href="#" id="logoutBtn" class="logout-btn">
+                Odhlásit
+            </a>
+
+        </div>
+
+    </header>
+
+    <section class="welcome">
+
+        <h2>Ceník služeb</h2>
+
+        <p>
+            Zde můžete upravovat ceny, přidávat nové služby nebo mazat stávající.
+            Změny se uloží do GitHubu a na veřejném webu se zobrazí po publikaci GitHub Pages (obvykle během několika minut).
+        </p>
+
+    </section>
+
+    <p id="editorStatus" class="form-status" role="status" aria-live="polite"></p>
+    <div id="pricingContainer">
+
+        <p>Načítám ceník…</p>
+
+    </div>
+
+    <div class="pricing-actions">
+
+        <button id="saveAllBtn">
+            💾 Uložit změny
+        </button>
+
+    </div>
+
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/pricing.js"></script>
+
+</body>
+
+</html>

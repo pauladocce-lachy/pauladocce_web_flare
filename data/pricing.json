@@ -1,0 +1,57 @@
+{
+  "categories": [
+    {
+      "id": "damske",
+      "name": "Dámské",
+      "services": [
+        {
+          "id": "strih",
+          "name": "Střih",
+          "shortHair": "",
+          "mediumHair": "",
+          "longHair": ""
+        },
+        {
+          "id": "myti-foukana",
+          "name": "Mytí + foukaná",
+          "shortHair": "",
+          "mediumHair": "",
+          "longHair": ""
+        },
+        {
+          "id": "barveni",
+          "name": "Barvení",
+          "shortHair": "",
+          "mediumHair": "",
+          "longHair": ""
+        }
+      ]
+    },
+    {
+      "id": "panske",
+      "name": "Pánské",
+      "services": [
+        {
+          "id": "strih",
+          "name": "Pánský střih",
+          "shortHair": "",
+          "mediumHair": "",
+          "longHair": ""
+        }
+      ]
+    },
+    {
+      "id": "detske",
+      "name": "Dětské",
+      "services": [
+        {
+          "id": "strih",
+          "name": "Dětský střih",
+          "shortHair": "",
+          "mediumHair": "",
+          "longHair": ""
+        }
+      ]
+    }
+  ]
+}

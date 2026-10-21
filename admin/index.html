@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex,nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Přihlášení | Paula Docce Admin </title>
+
+    <link rel="stylesheet" href="css/admin.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="login-page">
+
+    <div class="login-card">
+
+        <h1>Paula Docce</h1>
+
+        <p class="subtitle">
+            Administrace webu
+        </p>
+
+        <form id="loginForm">
+            <p id="loginStatus" class="form-status" role="status" aria-live="polite"></p>
+
+            <label>E-mail</label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Váš administrátorský e-mail"
+                required
+            >
+
+            <label>Heslo</label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="••••••••"
+                required
+            >
+
+            <button type="submit">
+                Přihlásit se
+            </button>
+
+        </form>
+
+        <p class="copyright">
+            © Paula Docce
+        </p>
+
+    </div>
+
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+
+</body>
+</html>

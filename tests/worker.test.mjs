@@ -1,0 +1,40 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import worker from '../cloudflare-worker/worker.js';
+const env={ADMIN_EMAIL:'admin@example.cz',ADMIN_PASSWORD:'very-secret-pass',SESSION_SECRET:'a-long-session-secret-example',GITHUB_TOKEN:'github-token',GH_OWNER:'example',GH_REPO:'site',GH_BRANCH:'main',ALLOWED_ORIGIN:'https://test.github.io'};
+const origFetch=globalThis.fetch;
+let content=JSON.parse(readFileSync(new URL('../data/pricing.json',import.meta.url),'utf8'));
+let sha='a'.repeat(40),writes=0;
+globalThis.fetch=async (url,options) => {
+  if (!String(url).startsWith('https://api.github.com/'))throw Error('unexpected URL');
+  if (options.method==='PUT') {
+    const body=JSON.parse(options.body);
+    if(body.sha!==sha)return new Response('{}',{status:409});
+    content=JSON.parse(Buffer.from(body.content,'base64').toString('utf8'));
+    sha='b'.repeat(40); writes++;
+    return Response.json({content:{sha}});
+  }
+  return Response.json({sha,content:Buffer.from(JSON.stringify(content)).toString('base64')});
+};
+const api=(path,method='GET',body,token,origin=env.ALLOWED_ORIGIN)=>worker.fetch(new Request('https://api.example.workers.dev'+path,{method,headers:{Origin:origin,...(token?{Authorization:'Bearer '+token}:{}),...(body?{'Content-Type':'application/json'}:{})},body:body?JSON.stringify(body):undefined}),env);
+let r=await api('/session');assert.equal(r.status,401);
+r=await api('/login','POST',{email:'bad@example.cz',password:'very-secret-pass'});assert.equal(r.status,401);
+r=await api('/login','POST',{email:'admin@example.cz',password:'wrong'});assert.equal(r.status,401);
+r=await api('/login','POST',{email:'admin@example.cz',password:'very-secret-pass'});assert.equal(r.status,200);
+const key=(await r.json()).token;assert.ok(key.includes('.'));
+r=await api('/session','GET',undefined,key);assert.equal(r.status,200);
+r=await api('/pricing','GET',undefined,key);let pricing=await r.json();assert.deepEqual(pricing.data,content);
+r=await api('/pricing','PUT',{sha:pricing.sha,data:{categories:[]}},key);assert.equal(r.status,400);
+r=await api('/pricing','PUT',{sha:'b'.repeat(40),data:content},key);assert.equal(r.status,409);
+const update=structuredClone(content);update.categories[0].services[0].name='Úprava kadeřnictví ✓';
+r=await api('/pricing','PUT',{sha:pricing.sha,data:update},key);assert.equal(r.status,200);assert.equal(writes,1);
+r=await api('/pricing','GET',undefined,key);pricing=await r.json();assert.equal(pricing.data.categories[0].services[0].name,'Úprava kadeřnictví ✓');
+r=await api('/pricing','PUT',{sha:'a'.repeat(40),data:update},key);assert.equal(r.status,409);assert.equal(writes,1);
+r=await api('/pricing','GET',undefined,key,'https://evil.example');assert.equal(r.status,403);
+r=await api('/session','GET',undefined,key+'x');assert.equal(r.status,401);
+r=await api('/pricing','GET',undefined,key);assert.equal(r.headers.get('Access-Control-Allow-Origin'),env.ALLOWED_ORIGIN);
+r=await api('/pricing','OPTIONS',undefined,undefined);assert.equal(r.status,204);
+const failConfig={...env,GITHUB_TOKEN:''};
+r=await worker.fetch(new Request('https://worker.example/session',{headers:{Origin:env.ALLOWED_ORIGIN}}),failConfig);assert.equal(r.status,503);
+console.log('PASS: auth, valid session, GitHub file read/write, UTF-8, validation, version conflict, CORS, invalid token, config.');
+globalThis.fetch=origFetch;

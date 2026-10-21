@@ -1,0 +1,696 @@
+/* ==========================================================
+   Paula Docce Admin
+========================================================== */
+
+:root{
+
+    --primary:#5D7756;
+    --primary-dark:#486044;
+
+    --background:#F8F7F2;
+    --surface:#FFFFFF;
+
+    --text:#2E372D;
+    --text-light:#6D756B;
+
+    --border:#E4E7E1;
+
+    --shadow:0 15px 40px rgba(0,0,0,.08);
+
+    --radius:22px;
+
+    --transition:.3s ease;
+
+}
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+body{
+
+    font-family:'Inter',sans-serif;
+
+    background:
+        linear-gradient(rgba(248,247,242,.90),rgba(248,247,242,.90)),
+        url("../../images/hero.webp") center/cover fixed;
+
+    color:var(--text);
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:30px;
+
+}
+
+a{
+
+    color:inherit;
+
+    text-decoration:none;
+
+}
+
+button,
+input{
+
+    font-family:inherit;
+
+}
+
+.login-page{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.login-card{
+
+    width:100%;
+
+    max-width:430px;
+
+    background:rgba(255,255,255,.82);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.55);
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+    padding:50px;
+
+}
+
+.login-card h1{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:3rem;
+
+    color:var(--primary);
+
+    text-align:center;
+
+}
+
+.subtitle{
+
+    text-align:center;
+
+    color:var(--text-light);
+
+    margin:8px 0 35px;
+
+}
+
+form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+label{
+
+    font-weight:600;
+
+    font-size:.95rem;
+
+}
+
+input{
+
+    width:100%;
+
+    padding:15px 18px;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    background:#FFF;
+
+    transition:var(--transition);
+
+    font-size:1rem;
+
+}
+
+input:focus{
+
+    outline:none;
+
+    border-color:var(--primary);
+
+    box-shadow:0 0 0 4px rgba(93,119,86,.15);
+
+}
+
+button{
+
+    margin-top:10px;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:50px;
+
+    background:var(--primary);
+
+    color:#FFF;
+
+    font-size:1rem;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+}
+
+button:hover{
+
+    background:var(--primary-dark);
+
+    transform:translateY(-2px);
+
+}
+
+.copyright{
+
+    margin-top:30px;
+
+    text-align:center;
+
+    color:var(--text-light);
+
+    font-size:.9rem;
+
+}
+
+@media(max-width:768px){
+
+    .login-card{
+
+        padding:35px 25px;
+
+    }
+
+    .login-card h1{
+
+        font-size:2.5rem;
+
+    }
+
+}
+
+/* ==========================================================
+   Dashboard
+========================================================== */
+
+.dashboard{
+
+    width:100%;
+    max-width:1200px;
+
+}
+
+.admin-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:50px;
+
+}
+
+.admin-header h1{
+
+    font-family:'Cormorant Garamond',serif;
+
+    font-size:2.6rem;
+
+    color:var(--primary);
+
+}
+
+.logout-btn{
+
+    padding:12px 24px;
+
+    background:var(--primary);
+
+    color:white;
+
+    border-radius:50px;
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+}
+
+.logout-btn:hover{
+
+    background:var(--primary-dark);
+
+}
+
+.welcome{
+
+    margin-bottom:40px;
+
+}
+
+.welcome h2{
+
+    font-size:2rem;
+
+    margin-bottom:10px;
+
+}
+
+.welcome p{
+
+    color:var(--text-light);
+
+    line-height:1.7;
+
+}
+
+.dashboard-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+    gap:30px;
+
+    margin-bottom:40px;
+
+}
+
+.dashboard-card{
+
+    display:block;
+
+    background:rgba(255,255,255,.82);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.55);
+
+    border-radius:22px;
+
+    padding:35px;
+
+    box-shadow:var(--shadow);
+
+    transition:var(--transition);
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 22px 45px rgba(0,0,0,.12);
+
+}
+
+.dashboard-card .icon{
+
+    font-size:2.5rem;
+
+    display:block;
+
+    margin-bottom:20px;
+
+}
+
+.dashboard-card h3{
+
+    font-size:1.5rem;
+
+    margin-bottom:12px;
+
+    color:var(--primary);
+
+}
+
+.dashboard-card p{
+
+    color:var(--text-light);
+
+    line-height:1.7;
+
+}
+
+.status-card{
+
+    background:rgba(255,255,255,.82);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.55);
+
+    border-radius:22px;
+
+    padding:35px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.status-card h3{
+
+    margin-bottom:25px;
+
+    color:var(--primary);
+
+}
+
+.status-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:16px 0;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.status-row:last-child{
+
+    border-bottom:none;
+
+}
+
+.online{
+
+    color:#2E8B57;
+
+}
+
+@media(max-width:768px){
+
+    .admin-header{
+
+        flex-direction:column;
+
+        gap:20px;
+
+        text-align:center;
+
+    }
+
+    .welcome{
+
+        text-align:center;
+
+    }
+
+}
+
+/* ==========================================================
+   Pricing
+========================================================== */
+
+.header-buttons{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.btn-secondary{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:12px 24px;
+
+    border-radius:50px;
+
+    background:#FFF;
+
+    border:1px solid var(--border);
+
+    color:var(--text);
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+}
+
+.btn-secondary:hover{
+
+    background:#F3F5F2;
+
+}
+
+#pricingContainer{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:35px;
+
+}
+
+.category-card{
+
+    background:rgba(255,255,255,.82);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.55);
+
+    border-radius:22px;
+
+    padding:35px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.category-card h2{
+
+    font-family:'Cormorant Garamond',serif;
+
+    color:var(--primary);
+
+    font-size:2rem;
+
+    margin-bottom:30px;
+
+}
+
+.service-row{
+
+    display:grid;
+
+    grid-template-columns:2fr repeat(3,1fr) auto;
+
+    gap:15px;
+
+    align-items:center;
+
+    margin-bottom:18px;
+
+}
+
+.service-row input{
+
+    margin:0;
+
+}
+
+.service-row button{
+
+    margin:0;
+
+    padding:12px 16px;
+
+    border-radius:12px;
+
+    background:#D9534F;
+
+}
+
+.service-row button:hover{
+
+    background:#C9302C;
+
+}
+
+.add-service{
+
+    margin-top:20px;
+
+}
+
+.add-service button{
+
+    width:100%;
+
+    background:var(--primary);
+
+}
+
+.pricing-actions{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    margin-top:40px;
+
+}
+
+#saveAllBtn{
+
+    min-width:220px;
+
+}
+
+@media(max-width:900px){
+
+    .service-row{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .pricing-actions{
+
+        justify-content:center;
+
+    }
+
+    #saveAllBtn{
+
+        width:100%;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .header-buttons{
+
+        width:100%;
+
+        flex-direction:column;
+
+    }
+
+    .btn-secondary,
+
+    .logout-btn{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+}
+
+.service-header{
+
+    font-weight:700;
+
+    color:var(--primary);
+
+    margin-bottom:15px;
+
+    padding-bottom:10px;
+
+    border-bottom:2px solid var(--border);
+
+}
+
+.service-header div{
+
+    text-align:center;
+
+}
+
+.service-header div:first-child{
+
+    text-align:left;
+
+}
+
+.row-actions{
+
+    display:flex;
+
+    gap:6px;
+
+}
+
+.row-actions button{
+
+    width:36px;
+
+    height:36px;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+
+.form-status { line-height: 1.5; color: var(--text-light); min-height: 1.4em; margin: 0 0 18px; }
+.form-status.error, .status-card.error { color: #a42424; }
+.form-status.warning { color: #87520b; }
+.form-status.success { color: #276d3e; }
+button:disabled { opacity: .6; cursor: wait; transform: none; }
+.row-actions .move-btn { background: var(--primary); }
+.row-actions .move-btn:hover { background: var(--primary-dark); }
+@media(max-width:900px) { .service-header { display: none; } .service-row:not(.service-header) { border-top: 1px solid var(--border); padding-top: 15px; } .row-actions button { width: 44px; height: 44px; } }

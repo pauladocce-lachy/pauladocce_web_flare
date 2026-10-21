@@ -1,0 +1,8 @@
+# Never publish secrets, local credentials or generated dependencies.
+.env
+.env.*
+.dev.vars
+.dev.vars.*
+node_modules/
+*.log
+.DS_Store

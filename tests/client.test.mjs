@@ -1,0 +1,28 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+const source=fs.readFileSync(new URL('../admin/js/api.js',import.meta.url),'utf8');
+let calls=[],store=new Map(),location={page:'',assign(v){this.page=v},replace(v){this.page=v}};
+const mockFetch=async(url,opts)=>{
+ calls.push({url,opts});
+ if(url.endsWith('/login')) return new Response(JSON.stringify({token:'token-value'}),{headers:{'Content-Type':'application/json'}});
+ if(url.endsWith('/pricing')&&opts.method==='PUT')return Response.json({ok:true,sha:'b'.repeat(40)});
+ if(url.endsWith('/pricing'))return Response.json({data:{categories:[]},sha:'a'.repeat(40)});
+ if(url.endsWith('/session'))return Response.json({ok:true});
+ throw Error('Unrecognized route');
+};
+const context={window:{PAULA_API_URL:'https://api.test.workers.dev/'},sessionStorage:{getItem:key=>store.get(key)||null,setItem:(key,val)=>store.set(key,val),removeItem:key=>store.delete(key)},fetch:mockFetch,location,Response};
+vm.runInNewContext(source,context);
+const client=context.window.paulaAPI;
+const auth=await client.login('admin@test.cz','test-pass');assert.equal(auth.token,'token-value');
+assert.equal(client.token(),'token-value');
+assert.equal(calls[0].url,'https://api.test.workers.dev/login');
+assert.equal(calls[0].opts.method,'POST');
+assert.equal(calls[0].opts.headers.Authorization,undefined);
+await client.session();assert.equal(calls.at(-1).opts.headers.Authorization,'Bearer token-value');
+const pricing=await client.pricing();assert.equal(pricing.sha,'a'.repeat(40));
+await client.savePricing(pricing.data,pricing.sha);
+assert.equal(calls.at(-1).opts.method,'PUT');
+const body=JSON.parse(calls.at(-1).opts.body);assert.equal(body.sha,pricing.sha);
+client.logout();assert.equal(client.token(),null);assert.equal(location.page,'index.html');
+console.log('PASS browser-client bridge: login, bearer auth, read, save payload, logout.');
