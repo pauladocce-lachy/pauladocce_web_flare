@@ -7,23 +7,9 @@
         {
           "id": "strih",
           "name": "Střih",
-          "shortHair": "",
-          "mediumHair": "",
-          "longHair": ""
-        },
-        {
-          "id": "myti-foukana",
-          "name": "Mytí + foukaná",
-          "shortHair": "",
-          "mediumHair": "",
-          "longHair": ""
-        },
-        {
-          "id": "barveni",
-          "name": "Barvení",
-          "shortHair": "",
-          "mediumHair": "",
-          "longHair": ""
+          "shortHair": "0",
+          "mediumHair": "0",
+          "longHair": "0"
         }
       ]
     },
