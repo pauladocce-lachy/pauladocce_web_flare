@@ -5,6 +5,13 @@
       "name": "Dámské",
       "services": [
         {
+          "id": "0c1924c4-4d52-4133-9266-0c768c21c054",
+          "name": "Nová služba",
+          "shortHair": "1",
+          "mediumHair": "1",
+          "longHair": "1"
+        },
+        {
           "id": "strih",
           "name": "Střih",
           "shortHair": "0",
