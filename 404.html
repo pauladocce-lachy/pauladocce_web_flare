@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#f7f5ef">
+  <title>404 – Paula Docce</title>
+
+  <style>
+    :root {
+      --bg: #f7f5ef;
+      --text: #343b30;
+      --muted: #777b6e;
+      --green: #68765b;
+      --line: #deded4;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      width: min(1200px, calc(100% - 64px));
+      margin: auto;
+      padding: 30px 0 24px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .logo {
+      color: var(--text);
+      text-decoration: none;
+      font: 30px Georgia, serif;
+      letter-spacing: 4px;
+    }
+
+    .brand-subtitle {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 3px;
+    }
+
+    main {
+      flex: 1;
+      width: min(1200px, calc(100% - 64px));
+      margin: auto;
+      display: flex;
+      align-items: center;
+      padding: 75px 0 85px;
+    }
+
+    .content {
+      max-width: 590px;
+      animation: appear .7s ease both;
+    }
+
+    .eyebrow {
+      color: var(--green);
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .number {
+      margin: 20px 0 8px;
+      font: normal clamp(110px, 20vw, 180px)/.95 Georgia, serif;
+      letter-spacing: -8px;
+      color: var(--green);
+    }
+
+    h1 {
+      max-width: 550px;
+      margin: 24px 0 20px;
+      font: normal clamp(32px, 5vw, 48px)/1.15 Georgia, serif;
+    }
+
+    .description {
+      max-width: 440px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 28px;
+      padding: 17px 30px;
+      border-radius: 50px;
+      background: var(--green);
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      transition: background .2s, transform .2s;
+    }
+
+    .button:hover {
+      background: var(--text);
+      transform: translateY(-2px);
+    }
+
+    .button:focus-visible {
+      outline: 2px solid var(--text);
+      outline-offset: 4px;
+    }
+
+    .countdown {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-top: 34px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .countdown svg {
+      width: 21px;
+      height: 21px;
+      flex-shrink: 0;
+    }
+
+    #seconds {
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    footer {
+      width: min(1200px, calc(100% - 64px));
+      margin: auto;
+      padding: 26px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      text-align: center;
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      header, main, footer {
+        width: calc(100% - 40px);
+      }
+
+      header { padding: 24px 0 20px; }
+
+      .logo { font-size: 25px; }
+
+      main { padding: 65px 0; }
+
+      .number { letter-spacing: -5px; }
+
+      .description { font-size: 15px; }
+
+      .button {
+        padding: 16px 22px;
+        font-size: 13px;
+      }
+
+      .countdown {
+        align-items: flex-start;
+        font-size: 13px;
+        line-height: 1.6;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a href="/" class="logo" aria-label="Paula Docce – úvod">
+      PAULA DOCCE
+    </a>
+    <div class="brand-subtitle">
+      KADEŘNICTVÍ · PÉČE O VLASY
+    </div>
+  </header>
+
+  <main>
+    <section class="content">
+      <div class="eyebrow">Jejda, tady něco chybí</div>
+
+      <div class="number" aria-label="Chyba 404">404</div>
+
+      <h1>Tahle stránka se nám zatoulala.</h1>
+
+      <p class="description">
+        Vypadá to, že hledaná stránka už neexistuje
+        nebo jste zadali špatnou adresu.
+        Pojďme vás vrátit zpátky.
+      </p>
+
+      <a href="/" class="button">
+        <span aria-hidden="true">←</span>
+        Zpět na úvodní stránku
+      </a>
+
+      <div class="countdown" role="status" aria-live="off">
+        <svg viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.6"
+             aria-hidden="true">
+          <circle cx="12" cy="12" r="9.5"/>
+          <path d="M12 6.5V12l4 2.5"/>
+        </svg>
+        <span id="redirect-message">
+          Přesměrování za <span id="seconds">7</span> sekund…
+        </span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    VAŠE VLASY JSOU VE SPRÁVNÝCH RUKOU. ♡
+  </footer>
+
+  <script>
+    (() => {
+      let remaining = 7;
+      const seconds = document.getElementById("seconds");
+
+      const timer = setInterval(() => {
+        remaining--;
+
+        if (remaining <= 0) {
+          clearInterval(timer);
+          window.location.replace("/");
+          return;
+        }
+
+        seconds.textContent = remaining;
+      }, 1000);
+    })();
+  </script>
+</body>
+</html>
